@@ -21,6 +21,30 @@ app.get('/countries', (req, res) => {
   });
 });
 
+app.post('/countries-unique', (req, res) => {
+  r.table('countriesUnique').insert(
+    r.table('countries').without('id').distinct()
+  ).run(connection, (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    console.log(JSON.stringify(result, null, 2));
+    res.sendStatus(201);
+  })
+});
+
+app.get('/countries-unique', (req, res) => {
+  r.table('countriesUnique').run(connection, function(err, cursor) {
+    if (err) throw err;
+    cursor.toArray(function(err, result) {
+      if (err) {
+        res.send(err);
+      }
+      res.send(result);
+    });
+  });
+});
+
 app.get('/countries/:id', (req, res) => {
   r.table('countries')
     .get(req.params.id)
