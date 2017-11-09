@@ -7,9 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start:api": "node api/index.js",
-    "start:webapp": "webpack-dev-server"
+    "start:webapp": "webpack-dev-server --port 3000 --hot --host 0.0.0.0"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "express": "^4.16.2",
     "html-webpack-plugin": "^2.30.1",
     "http": "^0.0.0",
@@ -18,6 +19,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "rethinkdb": "^2.3.3",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
     "webpack-dev-server": "^2.9.4"
   },
   "devDependencies": {
